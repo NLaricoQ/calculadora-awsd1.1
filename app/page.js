@@ -36,7 +36,7 @@ export default function CalculadoraUT() {
     const { name, value } = e.target;
     setInputs((prev) => ({
       ...prev,
-      [name]: Number(value),
+      [name]: value === '' ? '' : Number(value),
     }));
   };
 
@@ -70,18 +70,18 @@ export default function CalculadoraUT() {
                 </legend>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-semibold text-slate-600 mb-1">{t.thickness}</label>
-                    <input type="number" name="espesor" value={inputs.espesor} onChange={handleInputChange} 
+                    <label htmlFor="espesor" className="block text-sm font-semibold text-slate-700 mb-1">{t.thickness}</label>
+                    <input type="number" id="espesor" name="espesor" value={inputs.espesor} onChange={handleInputChange} 
                       className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 transition-colors" />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-slate-600 mb-1">{t.depth}</label>
-                    <input type="number" name="profundidad" value={inputs.profundidad} onChange={handleInputChange} 
+                    <label htmlFor="profundidad" className="block text-sm font-semibold text-slate-700 mb-1">{t.depth}</label>
+                    <input type="number" id="profundidad" name="profundidad" value={inputs.profundidad} onChange={handleInputChange} 
                       className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 transition-colors" />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-slate-600 mb-1">{t.length}</label>
-                    <input type="number" name="longitud" value={inputs.longitud} onChange={handleInputChange} 
+                    <label htmlFor="longitud" className="block text-sm font-semibold text-slate-700 mb-1">{t.length}</label>
+                    <input type="number" id="longitud" name="longitud" value={inputs.longitud} onChange={handleInputChange} 
                       className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 transition-colors" />
                   </div>
                 </div>
@@ -95,8 +95,8 @@ export default function CalculadoraUT() {
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-semibold text-slate-600 mb-1">{t.angle}</label>
-                      <select name="angulo" value={inputs.angulo} onChange={handleInputChange} 
+                      <label htmlFor="angulo" className="block text-sm font-semibold text-slate-700 mb-1">{t.angle}</label>
+                      <select id="angulo" name="angulo" value={inputs.angulo} onChange={handleInputChange} 
                         className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 transition-colors">
                         <option value={70}>70°</option>
                         <option value={60}>60°</option>
@@ -104,8 +104,8 @@ export default function CalculadoraUT() {
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-slate-600 mb-1">{t.leg}</label>
-                      <select name="pierna" value={inputs.pierna} onChange={handleInputChange} 
+                      <label htmlFor="pierna" className="block text-sm font-semibold text-slate-700 mb-1">{t.leg}</label>
+                      <select id="pierna" name="pierna" value={inputs.pierna} onChange={handleInputChange} 
                         className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 transition-colors">
                         <option value={1}>{t.leg1}</option>
                         <option value={2}>{t.leg2}</option>
@@ -115,13 +115,13 @@ export default function CalculadoraUT() {
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-semibold text-slate-600 mb-1">{t.refB}</label>
-                      <input type="number" name="nivelB" value={inputs.nivelB} onChange={handleInputChange} 
+                      <label htmlFor="nivelB" className="block text-sm font-semibold text-slate-700 mb-1">{t.refB}</label>
+                      <input type="number" id="nivelB" name="nivelB" value={inputs.nivelB} onChange={handleInputChange} 
                         className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 transition-colors" />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-slate-600 mb-1">{t.indA}</label>
-                      <input type="number" name="nivelA" value={inputs.nivelA} onChange={handleInputChange} 
+                      <label htmlFor="nivelA" className="block text-sm font-semibold text-slate-700 mb-1">{t.indA}</label>
+                      <input type="number" id="nivelA" name="nivelA" value={inputs.nivelA} onChange={handleInputChange} 
                         className="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block p-2.5 transition-colors" />
                     </div>
                   </div>
@@ -132,7 +132,7 @@ export default function CalculadoraUT() {
 
           {/* Panel Derecho: Dashboard de Resultados */}
           <section aria-label="Results Dashboard" className="w-full lg:w-95 bg-slate-800 p-6 lg:p-8 flex flex-col justify-center text-white border-t lg:border-t-0 lg:border-l border-slate-700 shadow-inner">
-            <h2 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6 border-b border-slate-700 pb-2">
+            <h2 className="text-sm font-bold text-slate-300 uppercase tracking-widest mb-6 border-b border-slate-700 pb-2">
               {t.results}
             </h2>
             
@@ -147,20 +147,20 @@ export default function CalculadoraUT() {
                 {/* Datos de cálculo */}
                 <div className="grid grid-cols-2 gap-3">
                   <div className="bg-slate-900/50 p-3 rounded border border-slate-700">
-                    <span className="block text-xs text-slate-400 mb-1">{t.path}</span>
-                    <span className="font-mono text-xl">{resultados.sp} <span className="text-xs text-slate-500">mm</span></span>
+                    <span className="block text-xs text-slate-300 mb-1">{t.path}</span>
+                    <span className="font-mono text-xl">{resultados.sp} <span className="text-xs text-slate-400">mm</span></span>
                   </div>
                   <div className="bg-slate-900/50 p-3 rounded border border-slate-700">
-                    <span className="block text-xs text-slate-400 mb-1">{t.proj}</span>
-                    <span className="font-mono text-xl">{resultados.x} <span className="text-xs text-slate-500">mm</span></span>
+                    <span className="block text-xs text-slate-300 mb-1">{t.proj}</span>
+                    <span className="font-mono text-xl">{resultados.x} <span className="text-xs text-slate-400">mm</span></span>
                   </div>
                   <div className="bg-slate-900/50 p-3 rounded border border-slate-700">
-                    <span className="block text-xs text-slate-400 mb-1">{t.attenuation}</span>
-                    <span className="font-mono text-xl">{resultados.c} <span className="text-xs text-slate-500">dB</span></span>
+                    <span className="block text-xs text-slate-300 mb-1">{t.attenuation}</span>
+                    <span className="font-mono text-xl">{resultados.c} <span className="text-xs text-slate-400">dB</span></span>
                   </div>
                   <div className="bg-slate-900 p-3 rounded border border-blue-500/30 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-8 h-8 bg-blue-500/10 rounded-bl-full"></div>
-                    <span className="block text-xs text-blue-300 font-bold mb-1">{t.rating}</span>
+                    <span className="block text-xs text-blue-200 font-bold mb-1">{t.rating}</span>
                     <span className="font-mono text-2xl text-white">{resultados.d} <span className="text-sm text-blue-200">dB</span></span>
                   </div>
                 </div>
@@ -168,7 +168,7 @@ export default function CalculadoraUT() {
                 {/* Veredicto */}
                 <div className="pt-6 border-t border-slate-700 mt-auto">
                   <div className="flex justify-between items-end mb-3">
-                    <span className="text-slate-400 text-sm">{t.classAssigned}</span>
+                    <span className="text-slate-300 text-sm">{t.classAssigned}</span>
                     <span className="text-3xl font-black text-slate-200">
                       {resultados.clase}
                     </span>

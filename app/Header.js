@@ -16,11 +16,13 @@ export default function Header({ t, lang, setLang }) {
         </div>
         <div>
           <h1 className="text-xl md:text-2xl font-bold text-white tracking-wide">{t.title}</h1>
-          <p className="text-slate-400 text-sm hidden sm:block">{t.subtitle}</p>
+          <p className="text-slate-300 text-sm hidden sm:block">{t.subtitle}</p>
         </div>
       </div>
       <div className="flex items-center gap-3">
+        <label htmlFor="languageSelector" className="sr-only">Select Language</label>
         <select 
+          id="languageSelector"
           className="bg-slate-800 text-white text-sm rounded border border-slate-700 px-2 py-1 outline-none focus:border-blue-500 cursor-pointer"
           value={lang}
           onChange={(e) => setLang(e.target.value)}
