@@ -109,6 +109,7 @@ export const calcularResultados = (inputs, t) => {
 
   let clase = '';
   let veredicto = '';
+  let tipoDefecto = '';
 
   if (!errorMsg) {
     clase = evaluarClase(espesor, angulo, d);
@@ -116,6 +117,15 @@ export const calcularResultados = (inputs, t) => {
       errorMsg = t.errRange;
     } else {
       veredicto = evaluarAceptacion(clase, longitud, t);
+      
+      // Lógica para estimar el tipo de defecto geométrico
+      if (profundidad <= 3) {
+        tipoDefecto = t.defectSurface;
+      } else if (espesor - profundidad <= 3) {
+        tipoDefecto = t.defectRoot;
+      } else {
+        tipoDefecto = t.defectVolume;
+      }
     }
   }
 
@@ -127,6 +137,7 @@ export const calcularResultados = (inputs, t) => {
     d,
     clase,
     veredicto,
+    tipoDefecto,
     error: errorMsg,
   };
 };
