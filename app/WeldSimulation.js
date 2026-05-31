@@ -6,18 +6,28 @@ export default function WeldSimulation({ inputs, resultados, t, weldOffset, setW
   const angle = Number(inputs.angulo) || 70;
   const leg = Number(inputs.pierna) || 1;
   const sp = Number(resultados.sp) || 0;
+  const autoX = Number(resultados.x) || 0;
+  const pcs = autoX + weldOffset;
+
+  // Calculamos los extremos relativos al centro de la soldadura
+  const minP = Math.min(-pcs, -weldOffset, 0);
+  const maxP = Math.max(-pcs, -weldOffset, 0);
+  const spread = maxP - minP;
 
   // Escala dinámica para que el dibujo quepa siempre en la pantalla
   const maxThicknessPx = 150;
-  const scale = Math.min(maxThicknessPx / Math.max(thickness, 1), 4);
+  const maxSpreadPx = 800; // Margen horizontal seguro dentro del viewBox
+  const scale = Math.min(
+    maxThicknessPx / Math.max(thickness, 1),
+    maxSpreadPx / Math.max(spread, 1),
+    4
+  );
   const T = thickness * scale;
 
   const probeY = 50;  // Margen superior
 
-  const autoX = Number(resultados.x) || 0;
-  // Calculamos el centro de la soldadura de forma estática basada en el PCS real
-  const weldCenterX = 500 + (autoX * scale) / 2;
-  const pcs = autoX + weldOffset;
+  // Calculamos el centro de la soldadura dinámicamente para centrar todo el dibujo
+  const weldCenterX = 500 - ((minP + maxP) / 2) * scale;
   const probeX = weldCenterX - (pcs * scale); // El transductor se mueve dinámicamente
 
   // Cálculos de los puntos de rebote del haz ultrasónico
@@ -115,7 +125,7 @@ export default function WeldSimulation({ inputs, resultados, t, weldOffset, setW
             </linearGradient>
           </defs>
           {/* Placa de Acero */}
-          <rect x="0" y={probeY} width="1000" height={T} fill="#334155" />
+          <rect x="-1000" y={probeY} width="3000" height={T} fill="#334155" />
           {/* Bisel de Soldadura Dinámico (Cuadrada, V Simple o Doble V) */}
           {sp > 0 && <path d={weldPath} fill="url(#weldGrad)" />}
           {/* Línea Central (Raíz) */}
@@ -137,7 +147,7 @@ export default function WeldSimulation({ inputs, resultados, t, weldOffset, setW
         </svg>
       </div>
       {/* Leyenda Visual */}
-      <div className="flex justify-center gap-6 mt-5 text-sm font-semibold text-slate-400">
+      <div className="flex flex-wrap justify-center gap-6 mt-5 text-sm font-semibold text-slate-400">
         <div className="flex items-center gap-2"><div className="w-4 h-4 bg-blue-500 rounded border border-blue-700"></div> {t.probe}</div>
         <div className="flex items-center gap-2"><div className="w-4 h-4 bg-amber-500 rounded-full"></div> {t.beam}</div>
         <div className="flex items-center gap-2"><div className="w-4 h-4 bg-red-500 rounded-full shadow-[0_0_8px_#ef4444]"></div> {t.defect}</div>
@@ -151,7 +161,7 @@ export default function WeldSimulation({ inputs, resultados, t, weldOffset, setW
           </label>
           <input type="range" id="weldOffset" min="-40" max="40" step="1" value={weldOffset} onChange={(e) => setWeldOffset(Number(e.target.value))} className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500" />
         </div>
-        <div className="bg-slate-900 px-6 py-3 rounded border border-slate-700 text-center sm:min-w-[200px]">
+        <div className="bg-slate-900 px-6 py-3 rounded border border-slate-700 text-center w-full sm:w-auto sm:min-w-[200px]">
           <span className="block text-[10px] text-slate-400 uppercase font-bold tracking-widest mb-1">{t.pcs}</span>
           <span className="font-mono text-2xl text-blue-400 font-black">{pcs.toFixed(1)} <span className="text-sm text-slate-500 font-sans">mm</span></span>
         </div>

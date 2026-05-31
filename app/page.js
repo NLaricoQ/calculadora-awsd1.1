@@ -227,7 +227,7 @@ export default function CalculadoraUT() {
           </section>
 
           {/* Panel Derecho: Dashboard de Resultados */}
-          <section aria-label="Results Dashboard" className="w-full lg:w-95 bg-slate-800 p-6 lg:p-8 flex flex-col justify-center text-white border-t lg:border-t-0 lg:border-l border-slate-700 shadow-inner">
+          <section aria-label="Results Dashboard" className="w-full lg:w-96 bg-slate-800 p-6 lg:p-8 flex flex-col justify-center text-white border-t lg:border-t-0 lg:border-l border-slate-700 shadow-inner">
             <h2 className="text-sm font-bold text-slate-300 uppercase tracking-widest mb-6 border-b border-slate-700 pb-2">
               {t.results}
             </h2>
