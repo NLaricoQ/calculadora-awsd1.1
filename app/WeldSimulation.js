@@ -170,7 +170,8 @@ export default function WeldSimulation({ inputs, resultados, t, weldOffset, setW
       {/* Recomendación de Ranura Normativa */}
       <div className="mt-6 w-full max-w-4xl bg-slate-800/50 border border-slate-700 rounded-lg p-4">
         <h3 className="text-blue-400 font-bold text-sm mb-1 uppercase tracking-wide">{t.grooveRecTitle}</h3>
-        <p className="text-slate-300 text-sm leading-relaxed">{grooveRecText}</p>
+        <p className="text-slate-300 text-sm leading-relaxed mb-3">{grooveRecText}</p>
+        
       </div>
     </section>
   );

@@ -90,6 +90,7 @@ export default function CalculadoraUT() {
     let isOutside = false;
     let isFusion = false;
     const absOffset = Math.abs(weldOffset);
+    const flawPos = -weldOffset; // Posición horizontal real de la falla
 
     if (inputs.grooveType === 'singleV') {
       const hw = rootHalf + ((thickness - depth) * tanBevel);
@@ -104,9 +105,9 @@ export default function CalculadoraUT() {
       const tanSingle = Math.tan(grooveAngle * (Math.PI / 180));
       const leftEdge = -rootHalf;
       const rightEdge = rootHalf + (thickness - depth) * tanSingle;
-      if (weldOffset < leftEdge || weldOffset > rightEdge) {
+      if (flawPos < leftEdge || flawPos > rightEdge) {
         isOutside = true;
-      } else if (weldOffset <= leftEdge + 2 || weldOffset >= rightEdge - 2) {
+      } else if (flawPos <= leftEdge + 2 || flawPos >= rightEdge - 2) {
         if (depth >= 3 && depth <= thickness - 3) isFusion = true;
       }
     } else if (inputs.grooveType === 'k') {
@@ -117,9 +118,9 @@ export default function CalculadoraUT() {
         ? rootHalf + ((halfT - depth) * tanSingle) 
         : rootHalf + ((depth - halfT) * tanSingle);
         
-      if (weldOffset < leftEdge || weldOffset > rightEdge) {
+      if (flawPos < leftEdge || flawPos > rightEdge) {
         isOutside = true;
-      } else if (weldOffset <= leftEdge + 2 || weldOffset >= rightEdge - 2) {
+      } else if (flawPos <= leftEdge + 2 || flawPos >= rightEdge - 2) {
         if (depth >= 3 && depth <= thickness - 3) isFusion = true;
       }
     }

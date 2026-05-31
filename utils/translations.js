@@ -51,7 +51,9 @@ export const translations = {
     optSingleBevel: "Single-Bevel Groove",
     optK: "K-Groove",
     grooveSingleBevel: "Single-Bevel Groove. Typical for T-joints or corner joints. Standard geometry applied based on thickness.",
-    grooveK: "K-Groove (Double-Bevel). Standard parameters applied based on thickness."
+    grooveK: "K-Groove (Double-Bevel). Standard parameters applied based on thickness.",
+    bevelAngle: "Bevel Angle",
+    rootOpening: "Root Opening"
   },
   es: {
     title: "Inspección UT",
@@ -105,6 +107,8 @@ export const translations = {
     optSingleBevel: "Ranura en Bisel Simple",
     optK: "Ranura en K",
     grooveSingleBevel: "Ranura en Bisel Simple. Típico para juntas en T o en esquina. Geometría estándar aplicada según el espesor.",
-    grooveK: "Ranura en K (Doble Bisel). Parámetros estándar aplicados según el espesor."
+    grooveK: "Ranura en K (Doble Bisel). Parámetros estándar aplicados según el espesor.",
+    bevelAngle: "Ángulo de Bisel",
+    rootOpening: "Abertura de Raíz"
   }
 };
